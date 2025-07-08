@@ -14,13 +14,13 @@ export async function POST(request: Request) {
     const body = await request.json();
     const formData: FormDataType = body.data;
 
-    // 🧠 Step 1: Extract flags
+   
     const flags = extractFlags(formData);
 
-    // 🧾 Step 2: Generate prompt
+  
     const prompt = generatePrompt(formData, flags);
 
-    // 🤖 Step 3: Request completion from GPT-4-Turbo
+  
     const aiResponse = await openai.chat.completions.create({
       model: "gpt-4-turbo",
       temperature: 0.5,
