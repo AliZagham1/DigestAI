@@ -98,14 +98,24 @@ ${reports
     }
 
     // Store in Supabase 
-    await supabase.from("ai_summaries").upsert({
+    const { data, error } = await supabase
+  .from('ai_summaries')
+  .upsert(
+    {
       user_id_text: userId,
       summary_json: parsedSummary,
       updated_at: new Date().toISOString(),
       reports_used_at_gen: latestReportDate ? latestReportDate.toISOString() : null,
     },
-    );
+    { onConflict: 'user_id_text' }
+  )
+  .select();
 
+    if (error) {
+      console.error("Error storing AI summary:", error);
+      return NextResponse.json({ error: "AI summary storage failed." }, { status: 500 });
+    }
+    
     return NextResponse.json(parsedSummary);
   } catch (err) {
     console.error(err);
