@@ -4,6 +4,9 @@ DigestAI is an AI-powered gut health assistant. It guides users through a struct
 
 ---
 
+## 🎥 Demo Video 
+[Watch the Demo Video](https://youtu.be/OHAn4aWdC1Q)
+
 ## Features
 
 - **Multi-Page Symptom Intake Form:**  
